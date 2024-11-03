@@ -1,10 +1,17 @@
-import { horisontalGradient, verticalGradient } from "../components/gradientCss";
-import { PageTitle } from "../components/Text";
+import { horisontalGradient } from "../components/gradientCss";
+import { BaseP, PageTitle, SpanGrad } from "../components/Text";
+import { GetAchivements } from "../components/getters";
+import PageWrap from "../components/BasePageWrap";
 
 export default function Page() {
+
     return (
-        <div className="pt-5 flex flex-col gap-y-2.5 wrapper">
-            <PageTitle>Мои <span className={`${horisontalGradient}`}>достижения</span></PageTitle>
-        </div>
+        <PageWrap>
+            <PageTitle>Мои <SpanGrad text={'достижения'} /></PageTitle>
+            <BaseP text={'Ездите и получайте награды'}/>
+            <ul className="grid grid-cols-4 gap-y-2.5 w-full p-2.5 rounded-base bg-white">
+                <GetAchivements full={true} />
+            </ul>
+        </PageWrap>
     )
 }

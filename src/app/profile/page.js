@@ -1,23 +1,24 @@
-import { Edit, Exit } from "../components/Buttons"
-import { BaseP, H3, LittleP } from "../components/Text"
-import { horisontalGradient, verticalGradient } from "../components/gradientCss"
+import { Edit, Exit } from "../components/Buttons";
+import { BaseP, H3, LittleP, SpanGrad } from "../components/Text";
 import { GetAchivements } from "../components/getters"
-import Graphic from "../components/graphic"
+import Graphic from "../components/graphic";
+import PageWrap from "../components/BasePageWrap";
 
 export default function Profile() {
     let url = 'DefProfile.png';
 
     let size = 144;
     return (
-        <div className="flex flex-col gap-y-2.5 py-5 wrapper">
+        <PageWrap>
             <div className="flex gap-x-2.5 w-full p-2.5 justify-between">
                 <div className={`rounded-full profileimg bg-cover bg-no-repeat bg-center shadow-drop`} style={{backgroundImage: `url(${url})`}}></div>
                 <ProfileInfo size={size}/>
             </div>
             <Achives />
-            <p className="text-dark text-base">Если бы вы не получали штрафы, то могли бы купить немало <span className={`font-bold text-subtitle ${horisontalGradient}`}>крипты</span></p>
-            <Graphic />
-        </div>
+            <NeuroMean />
+            <p className="text-dark text-base">Если бы вы не получали штрафы, то могли бы купить немало <SpanGrad text={'крипты'} className="font-bold text-subtitle"/></p>
+            <Graphic name={'Название графика'} desc={'Краткое описание графика'}/>
+        </PageWrap>
     )
 }
 
@@ -37,11 +38,10 @@ function ProfileInfo({size}) {
 function Achives() {
     return (
         <div className="flex flex-col gap-y-2.5 ">
-            <H3>Мои <span className={`font-bold ${horisontalGradient}`}>достижения</span></H3>
-            <ul className="flex w-full overflow-x-scroll">
+            <H3>Мои <SpanGrad text={'достижения'} className="font-bold"/></H3>
+            <ul className="flex w-full overflow-x-scroll gap-x-2.5">
                 <GetAchivements size={44}/>
             </ul>
-            <NeuroMean />
         </div>
     )
 }
@@ -57,7 +57,7 @@ function NeuroMean() {
 }
 
 function NeouroPost({neuroName}) {
-    let date = Date.now();
+    let date = '01.01.2024';
     let urlImg = `${neuroName}.jpg`;
 
     return (

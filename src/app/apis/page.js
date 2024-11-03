@@ -1,6 +1,7 @@
 import { BaseP, H4, LittleP, PageTitle } from "../components/Text";
 import Link from "next/link";
 import NewImage from "../components/Images";
+import PageWrap from "../components/BasePageWrap";
 
 export default function ApisPage() {
     let apis = [
@@ -37,11 +38,11 @@ export default function ApisPage() {
     ]
 
     return (
-        <div className="pt-5 flex flex-col gap-y-2.5 wrapper text-title">
+        <PageWrap>
             <PageTitle>Описание <span className="text-blue">API</span></PageTitle>
             <BaseP text={'Некоторое описание API приложения'}/>
             {apis.map(api => <OnceApi key={api.id} id={api.id} name={api.name} desc={api.desc} imgUrl={api.imgUrl}/>)}
-        </div>
+        </PageWrap>
     )
 }
 

@@ -5,7 +5,8 @@ import Image from "next/image";
 import { NewLink } from "./Buttons";
 import NewImage, { AchiveImage } from "./Images";
 import { horisontalGradient } from "./gradientCss";
-import { H5, H4, BaseP, H3} from "./Text";
+import { H5, H4, BaseP, H3, SpanGrad} from "./Text";
+import { GetAchivements } from "./getters";
 
 export function Name() {
     let name = 'Александр';
@@ -24,10 +25,10 @@ export function MyAccount() {
                 <p className="text-dark text-[32px]">{cond}$</p>
                 <div className="flex gap-x-2.5">
                     <NewLink action={() => {return}} isLink={false} text={'Оплатить'}/>
-                    <NewLink url={'!#'} text={'Подробнее'} />
+                    <NewLink url={'/fines'} text={'Подробнее'} />
                 </div>
             </div>
-            <Link href={'!#'}>
+            <Link href={'/fines'}>
                 <Image src={'t-arrow.svg'} width={24} height={24} alt="arrow"/>
             </Link>
         </div>
@@ -37,11 +38,11 @@ export function MyAccount() {
 export function BaseLink() {
     return (
         <div className="grid grid-cols-2 gap-x-2.5">
-            <Link href={'!#'} className="w-full flex flex-col gap-y-[17px] p-2.5 rounded-base shadow-drop bg-white">
+            <Link href={'/payments'} className="w-full flex flex-col gap-y-[17px] p-2.5 rounded-base shadow-drop bg-white">
                 <H5>История платежей</H5>
                 <BaseP text={'за последний месяц'} className="opacity-50" />
             </Link>
-            <Link href={'!#'} className="h-full w-full p-2.5 rounded-base shadow-drop bg-white flex gap-x-5 items-center">
+            <Link href={'/stats'} className="h-full w-full p-2.5 rounded-base shadow-drop bg-white flex gap-x-5 items-center">
                 <NewImage src={'stat.svg'} alt="statistic"/>
                 <H5>Статистика штрафов</H5>
             </Link>
@@ -51,16 +52,16 @@ export function BaseLink() {
 
 export function Analitic() {
     return (
-        <Link href={'!#'} className="flex gap-x-2.5 p-2.5 rounded-base bg-white shadow-drop">
+        <Link href={'/analize'} className="flex gap-x-2.5 p-2.5 rounded-base bg-white shadow-drop">
             <NewImage src={'db.svg'} alt={'db'}/>
-            <H5>Аналитика штрафов от <span className={`${horisontalGradient} font-bold`}>нейросети</span></H5>
+            <H5>Аналитика штрафов от <SpanGrad text={'нейросети'} className="font-bold"/></H5>
         </Link>
     )
 }
 
 export function GIBDD() {
     return (
-        <Link href={'!#'} className="flex gap-x-2.5 bg-white rounded-base shadow-drop p-2.5">
+        <Link href={'https://www.gosuslugi.ru/help/faq/pay_car_penalty/2015'} className="flex gap-x-2.5 bg-white rounded-base shadow-drop p-2.5">
             <div className="flex flex-col gap-y-2.5 w-full">
                 <H5>Как платить меньше?</H5>
                 <BaseP text={'Узнать у ГИБДД'} />
@@ -77,10 +78,11 @@ export function MyAchivement() {
         <Link href={'/achivement'} className="flex flex-col gap-y-2.5 p-2.5 rounded-base bg-white shadow-drop">
             <div className="flex gap-x-2.5 items-center">
                 <NewImage src={'Achive.svg'} alt={'Achivements'}/>
-                <H5>Мои <span className={`${horisontalGradient} font-bold`}>достижения</span></H5>
+                <H5>Мои <SpanGrad text={'достижения'} className="font-bold"/></H5>
             </div>
             <ul className="flex gap-x-2.5 w-full overflow-x-scroll">
-                {achives.map(elem => <AchiveImage key={elem.id}/>)}
+                <GetAchivements />
+                {/* {achives.map(elem => <AchiveImage key={elem.id}/>)} */}
             </ul>
         </Link>
     )
@@ -88,7 +90,7 @@ export function MyAchivement() {
 
 export function ApiDesc() {
     return (
-        <Link href={'/apis'} className="flex gap-x-2.5 p-2.5 rounded-base bg-white shadow-drop">
+        <Link href={'/apis'} className="flex flex-nowrap gap-x-2.5 p-2.5 rounded-base bg-white shadow-drop">
             <NewImage src={'Api.svg'} alt={'Api'}/>
             <div className="flex flex-col gap-y-2.5 w-full">
                 <H4>Описание <span className="font-bold text-blue">API</span></H4>

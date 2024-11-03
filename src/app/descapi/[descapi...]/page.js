@@ -2,10 +2,11 @@
 
 import { PageTitle } from "@/app/components/Text";
 import { BaseP } from "@/app/components/Text";
+import PageWrap from "@/app/components/BasePageWrap";
 
 export default async function Page({params}) {
-    let par = await params;
-    const apiId = par['descapi...'];
+    let param = await params;
+    const apiId = param['descapi...'];
     let api = {
         name: 'Название API',
         desc: 'Некоторое описание API приложения'
@@ -13,9 +14,9 @@ export default async function Page({params}) {
     console.log(apiId);
 
     return (
-        <div className="pt-5 flex flex-col gap-y-2.5 wrapper">
+        <PageWrap>
             <PageTitle>{api.name}</PageTitle>
             <BaseP text={api.desc}/>
-        </div>
+        </PageWrap>
     )
 }

@@ -1,3 +1,5 @@
+import { horisontalGradient } from "./gradientCss"
+
 export function H5({children}) {
     return <h5 className="text-dark text-subtitle">{children}</h5>
 }
@@ -24,4 +26,8 @@ export function WhiteP({className='', text}) {
 
 export function PageTitle({children}) {
     return <h2 className="font-bold text-dark text-title">{children}</h2>
+}
+
+export function SpanGrad({className='', text}) {
+    return <span className={`${horisontalGradient} ${className}`}>{text}</span>
 }
