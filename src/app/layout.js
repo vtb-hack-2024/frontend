@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         className="bg-light-grey"
       >
         <Header />
-        <div className="pt-[44px] mb-[44px]">
+        <div className="py-[44px]">
           {children}
         </div>
         <Footer />

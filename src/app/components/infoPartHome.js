@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { NewLink } from "./Buttons";
-import NewImage, { AchiveImage } from "./Images";
-import { horisontalGradient } from "./gradientCss";
+import NewImage from "./Images";
 import { H5, H4, BaseP, H3, SpanGrad} from "./Text";
 import { GetAchivements } from "./getters";
 

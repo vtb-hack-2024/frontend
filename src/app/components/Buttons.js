@@ -29,3 +29,25 @@ export function Exit() {
         </button>
     )
 }
+
+export function SignupButton() {
+    if (window.location.href.split('/').includes('signup')) {
+        return (
+            <button type='submit' className="w-full shadow-drop py-2.5 bg-light-blue rounded-little"><LittleP text={'Зарегистрироваться'} className="text-center"/></button>
+        )
+    }
+    return (
+        <Link href={'/auth/signup'} className="w-full shadow-drop py-2.5 bg-light-blue rounded-little"><LittleP text={'Зарегистрироваться'} className="text-center"/></Link>
+    )
+}
+
+export function LoginButton() {
+    if (window.location.href.split('/').includes('login')) {
+        return (
+            <button type='submit' className="w-full shadow-drop py-2.5 bg-blue rounded-little"><LittleP text={'Войти'} className="text-white text-center"/></button>
+        )
+    }
+    return (
+        <Link href={'/auth/login'} className="w-full shadow-drop py-2.5 bg-blue rounded-little"><LittleP text={'Войти'} className="text-white text-center"/></Link>
+    )
+}

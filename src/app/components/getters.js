@@ -67,7 +67,7 @@ export function GetAchivements({size='', full=false}) {
                 {achives.map(elem => 
                     <li key={elem.id} className="flex flex-col gap-y-2.5">
                         <div className={`relative w-fill flex justify-center items-center`}>
-                            <div className={`relative z-50 ${verticalGradient} p-[5px] rounded-full shadow-drop`}>
+                            <div className={`relative z-40 ${verticalGradient} p-[5px] rounded-full shadow-drop`}>
                                 <Image alt={'Simbol'} src={elem.img} width={34} height={34}/>
                             </div>
                             <Segment proportion={elem.donePart}/>
@@ -82,7 +82,7 @@ export function GetAchivements({size='', full=false}) {
         <>
             {achives.map(elem => 
                 <li key={elem.id} className={`relative w-fill flex flex-none justify-center items-center rounded-full`}>
-                    <div className={`relative z-50 ${verticalGradient} p-[5px] rounded-full shadow-drop`}>
+                    <div className={`relative z-40 ${verticalGradient} p-[5px] rounded-full shadow-drop`}>
                         <Image alt={'Simbol'} src={elem.img} width={34} height={34}/>
                     </div>
                     <Segment proportion={elem.donePart}/>
@@ -94,7 +94,7 @@ export function GetAchivements({size='', full=false}) {
 
 function Segment({proportion}) {
     return (
-        <div className="z-40 absolute w-full h-full">
+        <div className="z-30 absolute w-full h-full">
         </div>
     )
 }

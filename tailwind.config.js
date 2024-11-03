@@ -21,7 +21,8 @@ module.exports = {
         bg: '393/150'
       },
       borderRadius: {
-        base: '10px'
+        base: '10px',
+        little: '5px'
       },
       colors: {
         "grey": '#E7E7E7',
