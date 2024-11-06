@@ -14,7 +14,7 @@ export default function Footer() {
 
     if (isMobile) {
         return (
-            <footer className={`${visible ? 'fixed' : 'hidden'} bottom-0 tablet:top-[76px] w-full py-2.5 bg-white shadow-up-shadow z-50`}>
+            <footer className={`${visible ? 'fixed' : 'hidden'} bottom-0 tablet:top-[76px] w-full py-base tablet:py-tab-base bg-white shadow-up-shadow z-50`}>
             <nav className="flex flex-row tablet:flex-col wrapper justify-around tablet:justify-normal tablet:gap-y-5">
                 <Link href={'/'}>
                    <Image alt="main page" src={`http://${host}/MainPage.svg`} height={24} width={24}/>

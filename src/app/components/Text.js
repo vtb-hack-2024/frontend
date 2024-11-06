@@ -9,7 +9,7 @@ export function H4({children}) {
 }
 
 export function H3({children}) {
-    return <h3 className="text-dark text-l-title tablet:text-title-t desktop:text-title-d">{children}</h3>
+    return <h3 className="text-dark text-l-title tablet:text-l-title-t desktop:text-l-title-d">{children}</h3>
 }
 
 export function BaseP({className='', text}) {

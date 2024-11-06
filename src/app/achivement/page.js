@@ -9,7 +9,7 @@ export default function Page() {
         <PageWrap>
             <PageTitle>Мои <SpanGrad text={'достижения'} /></PageTitle>
             <BaseP text={'Ездите и получайте награды'}/>
-            <ul className="grid grid-cols-4 gap-y-2.5 w-full p-2.5 rounded-base bg-white">
+            <ul className="grid grid-cols-4 gap-y-base tablet:gap-y-tab-base w-full p-base tablet:p-tab-base rounded-base bg-white">
                 <GetAchivements full={true} />
             </ul>
         </PageWrap>

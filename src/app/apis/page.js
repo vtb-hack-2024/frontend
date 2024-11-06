@@ -48,9 +48,9 @@ export default function ApisPage() {
 
 function OnceApi({name, desc, imgUrl, id}) {
     return (
-        <Link href={`/descapi/${id}`} className="rounded-base border-blue border-[1px] bg-white shadow-drop flex gap-x-2.5 w-full p-2.5">
+        <Link href={`/descapi/${id}`} className="rounded-base border-blue border-[1px] bg-white shadow-drop flex gap-x-base tablet:gap-x-tab-base w-full p-base tablet:p-tab-base">
             <NewImage alt='apiSimbol' src={imgUrl} />
-            <div className="flex flex-col gap-y-2.5 w-full">
+            <div className="flex flex-col gap-y-base tablet:gap-y-tab-base w-full">
                 <H4>{name}</H4>
                 <LittleP text={desc}/>
             </div>

@@ -60,6 +60,10 @@ module.exports = {
       gap: {
         'base': '10px',
         'tab-base': '15px'
+      },
+      padding: {
+        'base': '10px',
+        'tab-base': '15px'
       }
     },
   },

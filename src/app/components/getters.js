@@ -65,7 +65,7 @@ export function GetAchivements({size='', full=false}) {
         return (
             <>
                 {achives.map(elem => 
-                    <li key={elem.id} className="flex flex-col gap-y-2.5">
+                    <li key={elem.id} className="flex flex-col gap-y-base tablet:gap-y-tab-base">
                         <div className={`relative w-fill flex justify-center items-center`}>
                             <div className={`relative z-40 ${verticalGradient} p-[5px] rounded-full shadow-drop`}>
                                 <Image alt={'Simbol'} src={elem.img} width={34} height={34}/>

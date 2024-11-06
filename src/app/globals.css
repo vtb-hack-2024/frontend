@@ -20,6 +20,15 @@
   grid-template-columns: 235px 1fr 235px;
 }
 
+.profileimg{
+  width: 214px;
+  height: 214px;
+}
+
+.footer-nav-tab{
+  width: 235px;
+}
+
 @media screen and (max-width: 900px) {
   .header-grid{
     grid-template-columns: 180px 1fr 180px;
@@ -29,30 +38,23 @@
     padding-right: 210px;
     padding-left: 210px;
   }
+
+  .profileimg{
+    width: 114px;
+    height: 114px;
+  }
 }
 
 @media screen and (max-width: 700px) {
+  .footer-nav-tab{
+    width: 180px;
+  }
   .s-wrapper{
     width: 100%;
     max-width: 730px;
     padding-right: 10px;
     padding-left: 10px;
     margin: 0 auto;
-  }
-}
-
-.profileimg{
-  width: 114px;
-  height: 114px;
-}
-
-.footer-nav-tab{
-  width: 235px;
-}
-
-@media screen and (max-width: 640px) {
-  .footer-nav-tab{
-    width: 180px;
   }
 }
 

@@ -12,7 +12,7 @@ export default function LogInForm() {
     }
 
     return (
-        <form className="p-5 flex flex-col gap-y-2.5 w-full rounded-base shadow-drop bg-white" id="login" onSubmit={(e) => {
+        <form className="p-5 flex flex-col gap-y-base tablet:gap-y-tab-base w-full rounded-base shadow-drop bg-white" id="login" onSubmit={(e) => {
             e.preventDefault();
             sendFormData();
         }}>

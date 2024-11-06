@@ -44,12 +44,12 @@ export default function Header() {
     })
 
     return (
-        <header className={`${visible ? 'fixed' : 'hidden'} w-full h-auto tablet:h-[70px] py-2.5 tablet:py-5 bg-white tablet:bg-transparent shadow-down-shadow tablet:shadow-none z-50`}>
-            <form className="flex tablet:grid header-grid gap-2.5 tablet:gap-5 wrapper top">
+        <header className={`${visible ? 'fixed' : 'hidden'} w-full h-auto tablet:h-[70px] py-base tablet:py-5 bg-white tablet:bg-transparent shadow-down-shadow tablet:shadow-none z-50`}>
+            <form className="flex tablet:grid header-grid gap-base tablet:gap-5 wrapper top">
                 {
                     !isMobile
                     ? 
-                    <div className="flex gap-x-2.5 items-top">
+                    <div className="flex gap-x-base items-top">
                         <Link href={'/profile'} className="bg-center bg-no-repeat bg-cover w-9 h-9" style={{backgroundImage: `url(http://${host}/Profile-tab.svg)`}} onClick={() => setPage('profile')} />
                         <Name name={name} />
                     </div>
@@ -61,7 +61,7 @@ export default function Header() {
                 {
                     !isMobile
                     ? 
-                    <div className="flex gap-x-2.5 w-full items-center">
+                    <div className="flex gap-x-base w-full items-center">
                         <input type="text" name="search" id="searchform" placeholder="Поиск" className="w-full  bg-grey rounded-base px-3 h-6 tablet:p-[15px] tablet:h-[50px] border-grey active:border-grey focus:border-grey placeholder:text-base tablet:placeholder:text-base-t desktop:placeholder:text-base-d tablet:shadow-inner"></input>
                         <button type="submit" className="bg-center bg-no-repeat bg-cover rounded-base w-[50px] h-[50px] shadow-drop" style={{backgroundImage: `url(http://${host}/Search-tab.svg)`}}>
                             {/* <div className="bg-center bg-no-repeat bg-contain w-[50px] h-[50px]" style={{backgroundImage: `url(http://${host}/Search.svg)`}}></div> */}
@@ -83,10 +83,11 @@ export default function Header() {
                             <Exit />
                         </div>
                         <nav className="absolute top-[90px] flex flex-col justify-normal gap-y-5 footer-nav-tab">
-                            <Link href={'/'} className={`rounded-base w-max text-dark text-base tablet:text-base-t desktop:text-base-d p-4 ${page == '' ? 'bg-grey shadow-inner' : 'bg-white shadow-drop'} active:bg-grey focus:bg-grey hover:bg-grey transition-all duration-300 shadow-drop active:shadow-inner focus:shadow-inner hover:shadow-inner`} onClick={() => setPage('')} >
+                            {/* <Link href={'/'} className={`rounded-base w-max text-dark text-base tablet:text-base-t desktop:text-base-d p-4 ${page == '' ? 'bg-grey shadow-inner' : 'bg-white shadow-drop'} active:bg-grey focus:bg-grey hover:bg-grey transition-all duration-300 shadow-drop active:shadow-inner focus:shadow-inner hover:shadow-inner`} onClick={() => setPage('')} > */}
+                            <Link href={'/'} className={`rounded-base w-max text-dark text-base tablet:text-base-t desktop:text-base-d p-4 bg-white active:bg-grey hover:bg-grey transition-all duration-300 shadow-drop active:shadow-inner hover:shadow-inner`} onClick={() => setPage('')} >
                                 <span>Главная</span>
                             </Link>
-                            <Link href={'/profile'} className={`rounded-base w-max text-dark text-base tablet:text-base-t desktop:text-base-d p-4 w-fill ${page == 'profile' ? 'bg-grey shadow-inner' : 'bg-white shadow-drop'} active:bg-grey focus:bg-grey hover:bg-grey transition-all duration-300 shadow-drop active:shadow-inner focus:shadow-inner hover:shadow-inner`} onClick={() => setPage('profile')} >
+                            <Link href={'/profile'} className={`rounded-base w-max text-dark text-base tablet:text-base-t desktop:text-base-d p-4 w-fill bg-white active:bg-grey hover:bg-grey transition-all duration-300 shadow-drop active:shadow-inner hover:shadow-inner`} onClick={() => setPage('profile')} >
                                 <span>Личный кабинет</span>
                             </Link>
                         </nav>

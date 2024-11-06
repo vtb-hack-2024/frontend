@@ -16,7 +16,7 @@ export default function Profile() {
             </div>
             <Achives />
             <NeuroMean />
-            <p className="text-dark text-base">Если бы вы не получали штрафы, то могли бы купить немало <SpanGrad text={'крипты'} className="font-bold text-subtitle"/></p>
+            <p className="text-dark text-base tablet:text-base-t desktop:text-base-d">Если бы вы не получали штрафы, то могли бы купить немало <SpanGrad text={'крипты'} className="font-bold text-subtitle"/></p>
             <Graphic name={'Название графика'} desc={'Краткое описание графика'}/>
         </PageWrap>
     )
@@ -37,7 +37,7 @@ function ProfileInfo({size}) {
 
 function Achives() {
     return (
-        <div className="flex flex-col gap-y-base tablet:gap-y-tab-base">
+        <div className="flex flex-col gap-y-base tablet:gap-y-tab-base rounded-base p-base tablet:p-tab-base bg-white">
             <H3>Мои <SpanGrad text={'достижения'} className="font-bold"/></H3>
             <ul className="flex w-full overflow-x-scroll gap-x-base tablet:gap-x-tab-base">
                 <GetAchivements size={44}/>
@@ -62,7 +62,7 @@ function NeouroPost({neuroName}) {
 
     return (
         <div className="rounded-base overflow-hidden bg-white shadow-drop">
-            <div className="flex flex-col gap-y-base p-2.5 tablet:gap-y-tab-base">
+            <div className="flex flex-col gap-y-base p-base tablet:p-tab-base tablet:gap-y-tab-base">
                 <H3>{neuroName}</H3>
                 <LittleP text={date}/>
             </div>
