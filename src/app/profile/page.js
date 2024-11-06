@@ -10,7 +10,7 @@ export default function Profile() {
     let size = 144;
     return (
         <PageWrap>
-            <div className="flex gap-x-2.5 w-full p-2.5 justify-between">
+            <div className="flex gap-x-base tablet:gap-x-tab-base w-full p-2.5 justify-between">
                 <div className={`rounded-full profileimg bg-cover bg-no-repeat bg-center shadow-drop`} style={{backgroundImage: `url(${url})`}}></div>
                 <ProfileInfo size={size}/>
             </div>
@@ -37,9 +37,9 @@ function ProfileInfo({size}) {
 
 function Achives() {
     return (
-        <div className="flex flex-col gap-y-2.5 ">
+        <div className="flex flex-col gap-y-base tablet:gap-y-tab-base">
             <H3>Мои <SpanGrad text={'достижения'} className="font-bold"/></H3>
-            <ul className="flex w-full overflow-x-scroll gap-x-2.5">
+            <ul className="flex w-full overflow-x-scroll gap-x-base tablet:gap-x-tab-base">
                 <GetAchivements size={44}/>
             </ul>
         </div>
@@ -48,7 +48,7 @@ function Achives() {
 
 function NeuroMean() {
     return (
-        <div className={`flex flex-col gap-y-2.5`}>
+        <div className={`flex flex-col gap-y-base tablet:gap-y-tab-base`}>
             <H3>Как тебя видит нейросеть</H3>
             <NeouroPost neuroName={'GPT'}/>
             <NeouroPost neuroName={'Сбер'}/>
@@ -62,7 +62,7 @@ function NeouroPost({neuroName}) {
 
     return (
         <div className="rounded-base overflow-hidden bg-white shadow-drop">
-            <div className="flex flex-col gap-y-2.5 p-2.5">
+            <div className="flex flex-col gap-y-base p-2.5 tablet:gap-y-tab-base">
                 <H3>{neuroName}</H3>
                 <LittleP text={date}/>
             </div>

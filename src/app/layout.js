@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         className="bg-light-grey"
       >
         <Header />
-        <div className="py-[44px]">
+        <div className="py-[44px] tablet:py-0 tablet:pt-[90px] tablet:pb-5">
           {children}
         </div>
         <Footer />

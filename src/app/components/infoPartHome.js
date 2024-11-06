@@ -11,7 +11,7 @@ export function Name() {
     let name = 'Александр';
 
     return (
-        <h1 className="font-bold text-4xl text-white">{name}</h1>
+        <h1 className="font-bold text-4xl text-white tablet:hidden">{name}</h1>
     )
 }
 
@@ -21,7 +21,7 @@ export function MyAccount() {
         <div className="flex p-2.5 items-center rounded-base bg-white shadow-drop">
             <div className="flex flex-col gap-y-2 w-full">
                 <H3>Общая сумма штрафов</H3>
-                <p className="text-dark text-[32px]">{cond}$</p>
+                <p className="text-dark text-[32px] tablet:text-[36px] desktop:text-[36px]">{cond}$</p>
                 <div className="flex gap-x-2.5">
                     <NewLink action={() => {return}} isLink={false} text={'Оплатить'}/>
                     <NewLink url={'/fines'} text={'Подробнее'} />
@@ -36,7 +36,7 @@ export function MyAccount() {
 
 export function BaseLink() {
     return (
-        <div className="grid grid-cols-2 gap-x-2.5">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-2.5">
             <Link href={'/payments'} className="w-full flex flex-col gap-y-[17px] p-2.5 rounded-base shadow-drop bg-white">
                 <H5>История платежей</H5>
                 <BaseP text={'за последний месяц'} className="opacity-50" />

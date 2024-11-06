@@ -98,3 +98,8 @@ function Segment({proportion}) {
         </div>
     )
 }
+
+export async function getName() {
+    let name = 'Александр';
+    return name;
+}
