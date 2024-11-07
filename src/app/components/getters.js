@@ -1,13 +1,15 @@
-'use client'
+'use server'
 
-import { useState } from "react";
+// import { useState } from "react";
 import { verticalGradient } from "./gradientCss";
+import { serverHost } from "./host";
 import { LittleP } from "./Text";
 import Image from "next/image";
 
-export function GetAchivements({size='', full=false}) {
-    const [achives, setAchives] = useState([]);
-    let newAchives = [
+export async function GetAchivements({size='', full=false}) {
+    // const [achives, setAchives] = useState([]);
+    let userId = 1;
+    let achives = [
         {
             id: 1,
             donePart: 0.5,
@@ -57,8 +59,15 @@ export function GetAchivements({size='', full=false}) {
             img: 'AchiveSi.svg'
         }
     ];
-    if (achives.length == 0) {
-        setAchives(newAchives);
+    // if (achives.length == 0) {
+
+    // }
+    try {
+        let res = await fetch(`http://${serverHost}/getachives?userId=${userId}`, {method: 'GET'});
+        if (res.status == 200) achives = res.json();
+        else throw "Value wasn't get";
+    } catch (e) {
+        console.log(e)
     }
 
     if (full) {

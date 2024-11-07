@@ -1,6 +1,9 @@
+'use server'
+
 import PageWrap from "../components/BasePageWrap";
 import Graphic from "../components/graphic";
 import { BaseP, PageTitle, SpanGrad } from "../components/Text";
+import { serverHost } from "../components/host";
 
 export default async function Stats() {
     let data = [
@@ -18,8 +21,7 @@ export default async function Stats() {
             id: 3,
             name: 'Название графика',
             desk: 'Краткое описание графика'
-        }
-        
+        }  
     ];
 
     return (

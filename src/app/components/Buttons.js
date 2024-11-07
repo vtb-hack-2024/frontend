@@ -1,8 +1,9 @@
 'use client'
 
 import Link from "next/link";
-import { LittleP, BaseP } from "./Text";
+import { BaseP } from "./Text";
 import Image from "next/image";
+import { host } from "./host";
 
 export function NewLink({url, action, isLink=true, text}) {
     let className = "px-base tablet:px-tab-base py-[4.5px] bg-light-blue rounded-full";
@@ -21,33 +22,37 @@ export function Edit({url}) {
 }
 
 export function Exit() {
-    function exit() {return};
+    function exit(e) {
+        e.preventDefault();
+        localStorage.clear();
+        window.location.replace(`http://${host}/auth/login`);
+    };
 
     return (
-        <button className="py-[5px] px-base tablet:px-tab-base rounded-full tablet:rounded-base bg-white shadow-drop" onClick={exit}>
+        <button className="py-[5px] px-base tablet:px-tab-base rounded-full tablet:rounded-base bg-white shadow-drop" onClick={(e) => exit(e)}>
             <BaseP text={'Выйти'} className="text-red"/>
         </button>
     )
 }
 
-export function SignupButton() {
-    if (window.location.href.split('/').includes('signup')) {
+export function SignupButton({isLogin}) {
+    if (!isLogin) {
         return (
-            <button type='submit' className="w-full shadow-drop py-base tablet:py-tab-base bg-light-blue rounded-little"><LittleP text={'Зарегистрироваться'} className="text-center"/></button>
+            <button type='submit' className="w-full shadow-drop py-base tablet:py-tab-base bg-light-blue rounded-little"><BaseP text={'Зарегистрироваться'} className="text-center"/></button>
         )
     }
     return (
-        <Link href={'/auth/signup'} className="w-full shadow-drop py-base tablet:py-tab-base bg-light-blue rounded-little"><LittleP text={'Зарегистрироваться'} className="text-center"/></Link>
+        <Link href={'/auth/signup'} className="w-full shadow-drop py-base tablet:py-tab-base bg-light-blue rounded-little"><BaseP text={'Зарегистрироваться'} className="text-center"/></Link>
     )
 }
 
-export function LoginButton() {
-    if (window.location.href.split('/').includes('login')) {
+export function LoginButton({isLogin}) {
+    if (isLogin) {
         return (
-            <button type='submit' className="w-full shadow-drop py-base tablet:py-tab-base bg-blue rounded-little"><LittleP text={'Войти'} className="text-white text-center"/></button>
+            <button type='submit' className="w-full shadow-drop py-base tablet:py-tab-base bg-blue rounded-little"><BaseP text={'Войти'} className="text-white text-center"/></button>
         )
     }
     return (
-        <Link href={'/auth/login'} className="w-full shadow-drop py-base tablet:py-tab-base bg-blue rounded-little"><LittleP text={'Войти'} className="text-white text-center"/></Link>
+        <Link href={'/auth/login'} className="w-full shadow-drop py-base tablet:py-tab-base bg-blue rounded-little"><BaseP text={'Войти'} className="text-white text-center"/></Link>
     )
 }

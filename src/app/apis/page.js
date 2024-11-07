@@ -1,9 +1,12 @@
+'use server'
+
 import { BaseP, H4, LittleP, PageTitle } from "../components/Text";
 import Link from "next/link";
 import NewImage from "../components/Images";
 import PageWrap from "../components/BasePageWrap";
+import { serverHost } from "../components/host";
 
-export default function ApisPage() {
+export default async function ApisPage() {
     let apis = [
         {
             id: 1,
@@ -35,13 +38,21 @@ export default function ApisPage() {
             desc: 'Узнать подробнее про API приложения...',
             imgUrl: 'ApiSimbol.svg',
         }
-    ]
+    ];
+
+    try {
+        let res = await fetch(`http://${serverHost}/getapiinfo`, {method: 'GET'});
+        if (res.status == 200) apis = await res.json();
+        else throw "Value wasn't get"
+    } catch (e) {
+        console.log(e);
+    }
 
     return (
         <PageWrap>
             <PageTitle>Описание <span className="text-blue">API</span></PageTitle>
             <BaseP text={'Некоторое описание API приложения'}/>
-            {apis.map(api => <OnceApi key={api.id} id={api.id} name={api.name} desc={api.desc} imgUrl={api.imgUrl}/>)}
+            {apis.map(api => <OnceApi key={api.id} id={api.id} name={api.name} desc={api.desc} imgUrl={api.imgUrl ? api.imgUrl : 'ApiSimbol.svg'}/>)}
         </PageWrap>
     )
 }

@@ -1,7 +1,21 @@
+'use server'
+
+import { serverHost } from "./host";
 import { H4, WhiteP } from "./Text";
 import { LittleP } from "./Text";
 
-export default function Graphic({name, desc}) {
+export default async function Graphic({name, desc, data=[]}) {
+    let userId = 1;
+    if (data.length == 0){
+        try {
+            let res = await fetch(`http://${serverHost}/getstatsdata/?userId=${userId}&chartName=${name}`, {method: 'GET'});
+            if (res.status == 200) data = await res.json();
+            else throw `Status code: ${res.status}`;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
         <div className="rounded-base overflow-hidden bg-white shadow-drop">
             <div className="flex flex-col gap-y-base tablet:gap-y-tab-base p-base tablet:p-tab-base bg-blue">

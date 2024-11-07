@@ -31,7 +31,7 @@ export default function Header() {
 
     useEffect(() => {
         async function getData () {
-            fetch(`http://${serverHost}/getname?${userId}`, {method: 'GET'})
+            fetch(`http://${serverHost}/getname?userId=${userId}`, {method: 'GET'})
             .then(res => res.json())
             .catch(err => console.log(err))
             .then(data => {

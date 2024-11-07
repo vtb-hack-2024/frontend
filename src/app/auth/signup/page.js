@@ -39,8 +39,8 @@ export default function SignUpForm() {
             <InputField name="password" placeholder="Пароль" type="password" />
             {err == 'norepass' && <BaseP text={'Пароли не совпадают'} className="text-red"/>}
             <InputField name="repassword" placeholder="Повторите пароль" type="password" />
-            <LoginButton />
-            <SignupButton />
+            <LoginButton isLogin={false}/>
+            <SignupButton isLogin={false}/>
         </form>
     )
 }

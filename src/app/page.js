@@ -1,6 +1,11 @@
-import {Name, MyAccount, BaseLink, Analitic, GIBDD, MyAchivement, ApiDesc} from './components/infoPartHome.js'
+'use server'
 
-export default function Home() {
+import {Name, MyAccount, BaseLink, Analitic, GIBDD, MyAchivement, ApiDesc} from './components/infoPartHome.js';
+import newSession from './utils/auth.js';
+
+export default async function Home() {
+  const userId = newSession.getUserId();
+
   return (
     <div className="relative">
       <div className="tablet:hidden w-full bg-cover rounded-b-2.5 aspect-bg bg-center bg-no-repeat absolute z-0" style={{backgroundImage: 'url(/MainFon.jpg)'}}></div>

@@ -1,4 +1,4 @@
-'use client'
+'use server';
 
 import Link from "next/link";
 import Image from "next/image";
@@ -6,24 +6,44 @@ import { NewLink } from "./Buttons";
 import NewImage from "./Images";
 import { H5, H4, BaseP, H3, SpanGrad} from "./Text";
 import { GetAchivements } from "./getters";
+import { serverHost } from "./host";
 
-export function Name() {
+export async function Name() {
     let name = 'Александр';
+    let userId = 1;
+    let access = '';
+    try {
+        let res = await fetch(`http://${serverHost}/getname?userId=${userId}&access=${access}`);
+        if (res.status) name = await res.json();
+        else throw "Value wasn't get";
+    } catch (e) {
+        console.log(e);
+    }
 
     return (
         <h1 className="font-bold text-4xl text-white tablet:hidden">{name}</h1>
     )
 }
 
-export function MyAccount() {
+export async function MyAccount() {
     let cond = 500;
-     return (
+    let userId = 1;
+    let access = '';
+    try {
+        let res = await fetch(`http://${serverHost}/getamount?userId=${userId}&access=${access}`);
+        if (res.status) cond = await res.json();
+        else throw "Value wasn't get";
+    } catch (e) {
+        console.log(e);
+    }
+
+    return (
         <div className="flex p-base tablet:p-tab-base items-center rounded-base bg-white shadow-drop">
             <div className="flex flex-col gap-y-2 w-full">
                 <H3>Общая сумма штрафов</H3>
                 <p className="text-dark text-[32px] tablet:text-[36px] desktop:text-[36px]">{cond}$</p>
                 <div className="flex gap-x-base tablet:gap-y-tab-base">
-                    <NewLink action={() => {return}} isLink={false} text={'Оплатить'}/>
+                    <NewLink url={'/fines'} text={'Оплатить'}/>
                     <NewLink url={'/fines'} text={'Подробнее'} />
                 </div>
             </div>
@@ -34,7 +54,7 @@ export function MyAccount() {
      )
 }
 
-export function BaseLink() {
+export async function BaseLink() {
     return (
         <div className="grid grid-cols-2 md:grid-cols-1 gap-base tablet:gap-tab-base">
             <Link href={'/payments'} className="w-full flex flex-col gap-y-[17px] p-base tablet:p-tab-base rounded-base shadow-drop bg-white">
@@ -49,7 +69,7 @@ export function BaseLink() {
     )
 }
 
-export function Analitic() {
+export async function Analitic() {
     return (
         <Link href={'/analize'} className="flex gap-x-base tablet:gap-x-tab-base p-base tablet:p-tab-base rounded-base bg-white shadow-drop">
             <NewImage src={'db.svg'} alt={'db'}/>
@@ -58,7 +78,7 @@ export function Analitic() {
     )
 }
 
-export function GIBDD() {
+export async function GIBDD() {
     return (
         <Link href={'https://www.gosuslugi.ru/help/faq/pay_car_penalty/2015'} className="flex gap-x-base tablet:gap-x-tab-base bg-white rounded-base shadow-drop p-base tablet:p-tab-base">
             <div className="flex flex-col gap-y-base tablet:gap-y-tab-base w-full">
@@ -70,9 +90,7 @@ export function GIBDD() {
     )
 }
 
-export function MyAchivement() {
-    let achives = [];
-    
+export async function MyAchivement() {    
     return (
         <Link href={'/achivement'} className="flex flex-col gap-y-base tablet:gap-y-tab-base p-base tablet:p-tab-base rounded-base bg-white shadow-drop">
             <div className="flex gap-x-base tablet:gap-x-tab-base items-center">
@@ -87,7 +105,7 @@ export function MyAchivement() {
     )
 }
 
-export function ApiDesc() {
+export async function ApiDesc() {
     return (
         <Link href={'/apis'} className="flex flex-nowrap gap-x-base tablet:gap-x-tab-base p-base tablet:p-tab-base rounded-base bg-white shadow-drop">
             <NewImage src={'Api.svg'} alt={'Api'}/>
