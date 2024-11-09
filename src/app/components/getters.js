@@ -1,14 +1,12 @@
 'use server'
 
-// import { useState } from "react";
+import newSession from "../utils/auth";
 import { verticalGradient } from "./gradientCss";
 import { serverHost } from "./host";
 import { LittleP } from "./Text";
 import Image from "next/image";
 
-export async function GetAchivements({size='', full=false}) {
-    // const [achives, setAchives] = useState([]);
-    let userId = 1;
+export async function GetAchivements({full=false}) {
     let achives = [
         {
             id: 1,
@@ -59,13 +57,10 @@ export async function GetAchivements({size='', full=false}) {
             img: 'AchiveSi.svg'
         }
     ];
-    // if (achives.length == 0) {
-
-    // }
     try {
-        let res = await fetch(`http://${serverHost}/getachives?userId=${userId}`, {method: 'GET'});
+        let res = await fetch(`http://${serverHost}/getachives?userId=${newSession.getUserId()}&access=${newSession.getAccess()}`, {method: 'GET'});
         if (res.status == 200) achives = res.json();
-        else throw "Value wasn't get";
+        else throw toString(res.status);
     } catch (e) {
         console.log(e)
     }

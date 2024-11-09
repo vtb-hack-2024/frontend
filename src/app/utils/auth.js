@@ -1,13 +1,13 @@
 import "server-only";
-import { host, serverHost } from "../components/host";
-import { redirect } from "next/navigation";
+import { serverHost } from "../components/host";
 
 class Session {
-    constructor () {
-        this.userId = null;
-        this.accessToken = null;
-        this.livetime = null;
+    constructor (livetime=null, accessToken=null, userId=null) {
+        this.userId = userId;
+        this.accessToken = accessToken;
+        this.livetime = livetime;
         this.interval = null;
+        this.isAuthProccess = false;
     }
 
     getAccess() {
@@ -18,11 +18,23 @@ class Session {
         return this.userId;
     }
 
+    async getName() {
+        try {
+            let res = await fetch(`http://${serverHost}/getname?userId=${this.userId}`, {method: 'GET'});
+            if (res.status == 200) return await res.json();
+            else throw toString(res.status);
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
+    }
+
     clearSession() {
         if (this.interval) clearInterval(this.interval);
         this.accessToken = null;
         this.userId = null;
         this.livetime = null;
+        this.isAuthProccess = true;
     }
 
     async updateSession (accessToken, userId, livetime) {
@@ -30,12 +42,11 @@ class Session {
             this.accessToken = accessToken;
             this.userId = userId;
             this.livetime = livetime;
-            let interval = setInterval(() => this.refreshToken(interval), livetime);
-            this.interval = interval;
+            this.interval = setInterval(() => this.refreshToken(), livetime);
         } else throw 'Some error';        
     }
 
-    async refreshToken(interval){
+    async refreshToken(){
         try {
             let res = await fetch(`http://${serverHost}/refresh`, {method: 'GET'});
             if (res.status == 200) {
@@ -46,21 +57,37 @@ class Session {
             }
             else throw "Token wash't getting";
         } catch (e) {
-            if (interval) clearInterval(interval);
+            if (this.interval) clearInterval(this.interval);
             this.accessToken = null;
             this.livetime = null;
             this.userId = null;
             this.interval = null;
             console.log(e);
-            redirect(`http://${host}/auth/login`, 'replace');
+            // redirect(`http://${host}/auth/login`, 'replace');
+            return null;
+        }
+    }
+
+    static async setAccessToken() {
+        try {
+            let res = await fetch(`http://${serverHost}/refresh`, {method: 'GET'})
+            if (res.status == 200) return await res.json();
+            else throw toString(res.status);
+        } catch (e) {
+            console.log(e);
+            return null;
         }
     }
 
     static async setSession() {
-        const session = new Session();
-        await session.refreshToken();
-        let interval = setInterval(() => session.refreshToken(interval), session.livetime);
-        session.interval = interval;
+        // let res = await this.setAccessToken();
+        // let session 
+        // if(res) {
+        //     session = new Session(res.livetime, res.accessToken, res.userId);
+        //     session.interval = setInterval(() => session.refreshToken(), session.livetime);
+        // }
+        // else session = new Session();
+        let session = new Session();
         return session;
     }
 }
@@ -68,4 +95,5 @@ class Session {
 const newSession = await Session.setSession();
 
 export default newSession;
+export {Session};
 

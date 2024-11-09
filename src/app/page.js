@@ -5,6 +5,7 @@ import newSession from './utils/auth.js';
 
 export default async function Home() {
   const userId = newSession.getUserId();
+  newSession.isAuthProccess = false;
 
   return (
     <div className="relative">

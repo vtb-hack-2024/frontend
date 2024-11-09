@@ -1,11 +1,14 @@
 'use server'
 
+import { headers } from "next/headers";
 import PageWrap from "../components/BasePageWrap";
 import Graphic from "../components/graphic";
 import { BaseP, PageTitle, SpanGrad } from "../components/Text";
-import { serverHost } from "../components/host";
 
-export default async function Stats() {
+export default async function Stats({params}) {
+    const currentUrl = await headers();   
+    console.log(currentUrl.get("referer"))
+    // console.log(await params);
     let data = [
         {
             id: 1,

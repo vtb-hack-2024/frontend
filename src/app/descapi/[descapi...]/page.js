@@ -7,7 +7,9 @@ import { serverHost } from "@/app/components/host";
 
 export default async function Page({params}) {
     let param = await params;
+    
     const apiId = param['descapi...'];
+    console.log(param);
     let api = {
         name: 'Название API',
         desc: 'Некоторое описание API приложения'

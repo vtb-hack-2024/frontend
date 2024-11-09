@@ -7,15 +7,14 @@ import NewImage from "./Images";
 import { H5, H4, BaseP, H3, SpanGrad} from "./Text";
 import { GetAchivements } from "./getters";
 import { serverHost } from "./host";
+import newSession from "../utils/auth";
 
 export async function Name() {
-    let name = 'Александр';
-    let userId = 1;
-    let access = '';
+    let name = null;
     try {
-        let res = await fetch(`http://${serverHost}/getname?userId=${userId}&access=${access}`);
+        let res = await fetch(`http://${serverHost}/getname?userId=${newSession.getUserId()}&access=${newSession.getAccess()}`, {method: 'GET'});
         if (res.status) name = await res.json();
-        else throw "Value wasn't get";
+        else throw toString(res.status);
     } catch (e) {
         console.log(e);
     }
@@ -27,10 +26,8 @@ export async function Name() {
 
 export async function MyAccount() {
     let cond = 500;
-    let userId = 1;
-    let access = '';
     try {
-        let res = await fetch(`http://${serverHost}/getamount?userId=${userId}&access=${access}`);
+        let res = await fetch(`http://${serverHost}/getamount?userId=${newSession.getUserId()}&access=${newSession.getAccess()}`);
         if (res.status) cond = await res.json();
         else throw "Value wasn't get";
     } catch (e) {
@@ -61,7 +58,7 @@ export async function BaseLink() {
                 <H5>История платежей</H5>
                 <BaseP text={'за последний месяц'} className="opacity-50" />
             </Link>
-            <Link href={'/stats'} className="h-full w-full p-base tablet:p-tab-base rounded-base shadow-drop bg-white flex gap-x-5 items-center">
+            <Link href={'/stats?stats=1'} className="h-full w-full p-base tablet:p-tab-base rounded-base shadow-drop bg-white flex gap-x-5 items-center">
                 <NewImage src={'stat.svg'} alt="statistic"/>
                 <H5>Статистика штрафов</H5>
             </Link>

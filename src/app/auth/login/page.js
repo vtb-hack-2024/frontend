@@ -4,19 +4,23 @@ import { LoginButton, SignupButton } from "@/app/components/Buttons";
 import { BaseP, LittleP, PageTitle } from "@/app/components/Text";
 import { host, serverHost } from "@/app/components/host";
 import InputField from "@/app/components/inputField";
-import { redirect } from "next/dist/server/api-utils";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LogInForm() {
     const [err, setErr] = useState(null);
-
-    console.log(err);
+    const router = useRouter();
+    try {
+        if (router.query.userId) window.location.replace(`http://${host}/`);
+    } catch (e) {
+        console.log(router.);
+    }
+    
 
     async function sendFormData() {
         let formData = new FormData(document.getElementById('login'))
-        let clearFormData = Object.fromEntries(formData);
-        console.log(clearFormData);
-        window.location.replace(`http://${host}/`);
+        // let clearFormData = Object.fromEntries(formData);
+        window.location.replace(`http://${host}/auth`);
 
         fetch(`http://${serverHost}/login`,
             {
@@ -29,7 +33,7 @@ export default function LogInForm() {
             if (data.status == 200) {
                 setErr(null);
                 // localStorage.setItem('userId', toString(data.userId));
-                window.location.replace(`http://${host}/`);
+                window.location.replace(`http://${host}/auth`);
             }
             else setErr('Request error');
         })
