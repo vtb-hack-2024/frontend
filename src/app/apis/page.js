@@ -3,7 +3,7 @@
 import { BaseP, H4, LittleP, PageTitle } from "../components/Text";
 import Link from "next/link";
 import NewImage from "../components/Images";
-import PageWrap from "../components/BasePageWrap";
+import { ApiWrap } from "../components/BasePageWrap";
 import { serverHost } from "../components/host";
 
 export default async function ApisPage() {
@@ -49,11 +49,11 @@ export default async function ApisPage() {
     }
 
     return (
-        <PageWrap>
+        <ApiWrap>
             <PageTitle>Описание <span className="text-blue">API</span></PageTitle>
             <BaseP text={'Некоторое описание API приложения'}/>
             {apis.map(api => <OnceApi key={api.id} id={api.id} name={api.name} desc={api.desc} imgUrl={api.imgUrl ? api.imgUrl : 'ApiSimbol.svg'}/>)}
-        </PageWrap>
+        </ApiWrap>
     )
 }
 

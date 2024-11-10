@@ -5,7 +5,7 @@ import { BaseP, LittleP, PageTitle } from "@/app/components/Text";
 import { host, serverHost } from "@/app/components/host";
 import InputField from "@/app/components/inputField";
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function LogInForm() {
     const [err, setErr] = useState(null);

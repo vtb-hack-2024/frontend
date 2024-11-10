@@ -6,12 +6,13 @@ import { GetAchivements } from "../components/getters"
 import Graphic from "../components/graphic";
 import PageWrap from "../components/BasePageWrap";
 import { serverHost } from "../components/host";
+import newSession from "../utils/auth";
 // import { useEffect, useState } from "react";
 
 export default async function Profile() {
     // const [data, setData] = useState({url: 'DefProfile.png', user: false})
     let data = {url: 'DefProfile.png', user: false};
-    let userId = 1;
+    let userId = newSession.getUserId();
     // useEffect(() => {
     //     async function getData() {
     //         fetch(`http://${serverHost}/getbaseinfo?${localStorage.getItem('userId')}`, {method: 'GET'})
@@ -27,7 +28,7 @@ export default async function Profile() {
     //     getData();
     // })
     try {
-        let res = await fetch(`http://${serverHost}/getbaseinfo?userId=${userId}`, {method: 'GET'});
+        let res = await fetch(`http://${serverHost}/getbaseinfo?userId=${userId}&access=${newSession.getAccess()}`, {method: 'GET'});
         if (res.status == 200) {
             let {userImgUrl, ...newUser} = await res.json();
             if (userImgUrl != data.url && userImgUrl) data.url = userImgUrl;
@@ -87,12 +88,12 @@ function NeuroMean({userId}) {
     )
 }
 
-async function NeouroPost({neuroName, userId}) {
+async function NeouroPost({neuroName}) {
     let date = '01.01.2024';
     let urlImg = `${neuroName}.jpg`;
 
     try {
-        let res = await fetch(`http://${serverHost}/getneuromean?userId=${userId}&nameNeuro=${neuroName}`);
+        let res = await fetch(`http://${serverHost}/getneuromean?userId=${userId}&access=${newSession.getAccess()}&nameNeuro=${neuroName}`);
         if (res.status == 200) {
             let data = await res.json();
             date = data.date;
@@ -117,7 +118,7 @@ async function NeouroPost({neuroName, userId}) {
 async function CryptoData({userId}) {
     let data = [];
     try {
-        let res = await fetch(`http://${serverHost}/getcryptodata?userId=${userId}`);
+        let res = await fetch(`http://${serverHost}/getcryptodata?userId=${userId}&access=${newSession.getAccess()}`);
         if (res.status == 200) data = res.json();
         else throw "Value hasn't got" 
     } catch (e) {

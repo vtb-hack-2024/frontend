@@ -38,7 +38,6 @@ export default async function RootLayout({ children }) {
   // if (access) name = await newSession.getName();
   // else if (redir) redirect(`http://${host}/auth/login`, 'replace');
   if (!newSession.isAuthProccess) {
-    console.log('here');
     let access = await Session.setAccessToken();
     if (access) {
         newSession.interval = setInterval(async () => {

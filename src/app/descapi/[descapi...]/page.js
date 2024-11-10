@@ -2,7 +2,7 @@
 
 import { PageTitle } from "@/app/components/Text";
 import { BaseP } from "@/app/components/Text";
-import PageWrap from "@/app/components/BasePageWrap";
+import { ApiWrap } from "@/app/components/BasePageWrap";
 import { serverHost } from "@/app/components/host";
 
 export default async function Page({params}) {
@@ -26,9 +26,9 @@ export default async function Page({params}) {
     
 
     return (
-        <PageWrap>
+        <ApiWrap>
             <PageTitle>{api.name}</PageTitle>
             <BaseP text={api.desc}/>
-        </PageWrap>
+        </ApiWrap>
     )
 }

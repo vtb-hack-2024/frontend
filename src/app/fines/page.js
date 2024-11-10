@@ -5,6 +5,7 @@ import { H5, LittleP, PageTitle, SpanGrad } from "../components/Text"
 import NewImage from "../components/Images"
 import Link from "next/link"
 import { serverHost } from "../components/host"
+import newSession from "../utils/auth"
 
 export default async function PageFines() {
     let userId = 1;
@@ -42,7 +43,7 @@ export default async function PageFines() {
     ];
 
     try {
-        let res = await fetch(`http://${serverHost}/getfines?userId=${userId}`);
+        let res = await fetch(`http://${serverHost}/getfines?userId=${newSession.getUserId()}?access=${newSession.getAccess()}`);
         if (res.status == 200) fines = await res.json();
         else throw "Value hasn't got";
     } catch (e) {

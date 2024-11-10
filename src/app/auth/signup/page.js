@@ -4,6 +4,7 @@ import { BaseP, PageTitle } from "@/app/components/Text";
 import InputField from "@/app/components/inputField";
 import { LoginButton, SignupButton } from "@/app/components/Buttons";
 import { useState } from "react";
+import { serverHost } from "@/app/components/host";
 
 
 
@@ -23,11 +24,23 @@ export default function SignUpForm() {
     }
 
     async function sendFormData() {
-        let formData = new FormData(document.getElementById('signup'))
-        // formData = Object.fromEntries(formData);
-        // console.log(formData);
+        let formData = new FormData(document.getElementById('signup'));
+        // window.location.replace(`http://${host}/auth`);
 
-        await 
+        try {
+            let res = await fetch(`http://${serverHost}/signup`, {
+                method: 'POST',
+                body: formData
+            });
+            if (res.status == 200) {
+                setErr(null);
+                window.location.replace(`http://${host}/auth`);
+                console.log(res.json());
+            } else throw 'signup error';
+        } catch(e) {
+            setErr('signup error');
+            console.log(e);
+        }  
 
     }
 
@@ -38,6 +51,7 @@ export default function SignUpForm() {
         }}>
             <PageTitle>Регистрация</PageTitle>
             <BaseP text={'в системе'}/>
+            {err == 'signup error' && <BaseP text={'Ошибка регистрации'} className="text-red" />}
             <InputField name="email" placeholder="Почта" type="email" />
             <InputField name="password" placeholder="Пароль" type="password" />
             {err == 'norepass' && <BaseP text={'Пароли не совпадают'} className="text-red"/>}

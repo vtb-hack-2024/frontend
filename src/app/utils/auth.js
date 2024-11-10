@@ -42,7 +42,7 @@ class Session {
             this.accessToken = accessToken;
             this.userId = userId;
             this.livetime = livetime;
-            this.interval = setInterval(() => this.refreshToken(), livetime);
+            // this.interval = setInterval(() => this.refreshToken(), livetime);
         } else throw 'Some error';        
     }
 

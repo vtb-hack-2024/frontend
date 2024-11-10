@@ -11,7 +11,7 @@ export default async function Auth() {
     // console.log(userId);
     // const {accessToken, livetime} = await newSession.refreshToken();
     // newSession.updateSession(accessToken, userId, livetime).then(redirect(`http://${host}/`, 'replace')).catch(redirect(`http://${host}/auth/login`, 'replace'))';
-    newSession.isAuthProccess = true;
+    newSession.isAuthProccess = false;
     let access = await Session.setAccessToken();
     // redirect(`http://${host}/auth/login?userId=${newSession.getUserId()}`, 'replace');
     redirect(`http://${host}/auth/login?userId=${1}`, 'replace');

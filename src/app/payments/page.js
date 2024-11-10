@@ -5,6 +5,7 @@ import { H5, LittleP, PageTitle, SpanGrad } from "../components/Text"
 import NewImage from "../components/Images"
 import Link from "next/link"
 import { serverHost } from "../components/host"
+import newSession from "../utils/auth"
 
 export default async function PagePayments() {
     let userId = 1;
@@ -43,7 +44,7 @@ export default async function PagePayments() {
     ];
 
     try {
-        let res = await fetch(`http://${serverHost}/getpayments?userId=${userId}&access=${accessToken}`)
+        let res = await fetch(`http://${serverHost}/getpayments?userId=${newSession.getUserId()}&access=${newSession.getAccess()}`)
         if (res.status == 200) payments = await res.json();
         else throw "Value hasn't got"
     } catch (e) {
