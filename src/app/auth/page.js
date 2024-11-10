@@ -15,6 +15,6 @@ export default async function Auth() {
         console.log(e);
     }
     let access = await Session.setAccessToken();
-    if (access) redirect(`http://${host}/auth/login?userId${newSession.getUserId()}`, 'replace');
+    if (access) redirect(`http://${host}/auth/login?userId=${newSession.getUserId()}`, 'replace');
     else redirect(`http://${host}/auth/login`, 'replace');
 }
