@@ -25,7 +25,6 @@ export default function SignUpForm() {
 
     async function sendFormData() {
         let formData = new FormData(document.getElementById('signup'));
-        // window.location.replace(`http://${host}/auth`);
 
         try {
             let res = await fetch(`http://${serverHost}/signup`, {

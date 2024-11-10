@@ -21,7 +21,6 @@ export default function LogInForm() {
 
     async function sendFormData() {
         let formData = new FormData(document.getElementById('login'));
-        // window.location.replace(`http://${host}/auth`);
 
         try {
             let res = await fetch(`http://${serverHost}/login`,

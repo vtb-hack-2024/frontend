@@ -4,7 +4,7 @@ import { BaseP, PageTitle, SpanGrad } from "../components/Text";
 import { GetAchivements } from "../components/getters";
 import PageWrap from "../components/BasePageWrap";
 
-export default function Page() {
+export default async function Page() {
     return (
         <PageWrap>
             <PageTitle>Мои <SpanGrad text={'достижения'} /></PageTitle>
