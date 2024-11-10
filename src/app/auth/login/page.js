@@ -5,38 +5,39 @@ import { BaseP, LittleP, PageTitle } from "@/app/components/Text";
 import { host, serverHost } from "@/app/components/host";
 import InputField from "@/app/components/inputField";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LogInForm() {
     const [err, setErr] = useState(null);
-    const router = useRouter();
+    const searchParams = useSearchParams();
+
     try {
-        if (router.query.userId) window.location.replace(`http://${host}/`);
+        if (searchParams.get('userId')) window.location.replace(`http://${host}/`);
+        else throw searchParams.get('userId');
     } catch (e) {
-        console.log(router.);
+        console.log(e);
     }
     
 
     async function sendFormData() {
-        let formData = new FormData(document.getElementById('login'))
-        // let clearFormData = Object.fromEntries(formData);
-        window.location.replace(`http://${host}/auth`);
+        let formData = new FormData(document.getElementById('login'));
+        // window.location.replace(`http://${host}/auth`);
 
-        fetch(`http://${serverHost}/login`,
+        try {
+            let res = await fetch(`http://${serverHost}/login`,
             {
                 method: 'POST',
                 body: formData
-            })
-        .then(res => res.json())
-        .catch(err => setErr(err))
-        .then(data => { 
-            if (data.status == 200) {
+            });
+            if (res.status == 200) {
                 setErr(null);
-                // localStorage.setItem('userId', toString(data.userId));
                 window.location.replace(`http://${host}/auth`);
-            }
-            else setErr('Request error');
-        })
+                console.log(res.json());
+            } else throw toString(res.status);
+        } catch (e) {
+            setErr('Request error');
+            console.log(e);
+        }
     }
 
     return (
@@ -46,7 +47,7 @@ export default function LogInForm() {
         }}>
             <PageTitle>Вход</PageTitle>
             <BaseP text={'в приложение'}/>
-            {err && <BaseP text={'Не верный логин или пароль'} className="text-red"/>}
+            {err && <BaseP text={'Неверный логин или пароль'} className="text-red"/>}
             <InputField name="email" placeholder="Почта" type="email" />
             <InputField name="password" placeholder="Пароль" type="password" />
             <LoginButton isLogin={true}/>

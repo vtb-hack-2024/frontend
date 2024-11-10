@@ -22,10 +22,13 @@ export default function SignUpForm() {
         }
     }
 
-    function sendFormData() {
+    async function sendFormData() {
         let formData = new FormData(document.getElementById('signup'))
-        formData = Object.fromEntries(formData);
-        console.log(formData);
+        // formData = Object.fromEntries(formData);
+        // console.log(formData);
+
+        await 
+
     }
 
     return (
