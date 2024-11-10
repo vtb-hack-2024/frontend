@@ -29,7 +29,7 @@ export default async function Stats({params}) {
 
     return (
         <PageWrap>
-            <PageTitle>Статистика моих <SpanGrad text={'поедзок'}/> и <SpanGrad text={'штрафов'}/></PageTitle>
+            <PageTitle>Статистика моих <SpanGrad text={'поeздок'}/> и <SpanGrad text={'штрафов'}/></PageTitle>
             <BaseP text={'Lorem ipsum dolor sit amet consectetur. Interdum quis tristique sollicitudin ac bibendum auctor. Laoreet sollicitudin dui fringilla egestas dapibus tellus morbi dolor cras. Rhoncus ante faucibus accumsan in netus. Accumsan dolor ac magna aliquet. Tortor pellentesque pulvinar nisl vitae. Leo pulvinar augue molestie aliquam quis mattis facilisi sed.'}/>
             {data.map(graphic => <Graphic key={1} name={graphic.name} desc={graphic.desk}/>)}
         </PageWrap>
